@@ -1,4 +1,5 @@
 const inquirer = require('inquirer');
+const { allDepartments } =  require('./dbConnection');
 
 inquirer
   .prompt([
@@ -8,7 +9,7 @@ inquirer
     },
   ])
   .then(answers => {
-    console.info('Answer:', answers.faveReptile);
+    console.info('Answer:', allDepartments());
   });
 
 

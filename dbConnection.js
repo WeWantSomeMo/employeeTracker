@@ -8,13 +8,21 @@ const connection = mysql.createConnection({
   database: 'Module12'
 });
 
-connection.query(
+function allDepartments() {
+  
+  let allDept = connection.query(
     'SELECT * FROM `department`',
-    function(err, results, fields) {
-        console.log(results);
-        console.log(fields);
-    }
-)
+    function (err, results, fields) {
+      console.log('this is line 16', results)
+      // return results
+      return results
+      // console.log(results)
+  })
+  console.log('this is line 21', allDept)
+  return allDept
+}
+
+module.exports = { allDepartments: allDepartments };
 // simple query
 // connection.query(
 //   'SELECT * FROM `table` WHERE `name` = "Page" AND `age` > 45',
