@@ -1,5 +1,9 @@
 // node scripts.js
-const mysql = require('mysql2');
+// const mysql = require('mysql2');
+import mysql2 from 'mysql2';
+// import {pw} from './secrets.js'
+
+const mysql = mysql2
 
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -8,35 +12,23 @@ const connection = mysql.createConnection({
   database: 'Module12'
 });
 
-function allDepartments() {
-  
-  let allDept = connection.query(
-    'SELECT * FROM `department`',
-    function (err, results, fields) {
-      console.log('this is line 16', results)
-      // return results
-      return results
-      // console.log(results)
-  })
-  console.log('this is line 21', allDept)
-  return allDept
+export function allDepartments() {
+  return connection.promise().query('SELECT * FROM department')
+  .then(([rows, fields]) =>{
+    return rows
+  });
 }
 
-module.exports = { allDepartments: allDepartments };
-// simple query
-// connection.query(
-//   'SELECT * FROM `table` WHERE `name` = "Page" AND `age` > 45',
-//   function(err, results, fields) {
-//     console.log(results); // results contains rows returned by server
-//     console.log(fields); // fields contains extra meta data about results, if available
-//   }
-// );
+export function allRoles(){
+  return connection.promise().query('SELECT * FROM role')
+  .then(([rows, fields]) =>{
+    return rows
+  });
+}
 
-// // with placeholder
-// connection.query(
-//   'SELECT * FROM `table` WHERE `name` = ? AND `age` > ?',
-//   ['Page', 45],
-//   function(err, results) {
-//     console.log(results);
-//   }
-// );
+export function allEmployees(){
+  return connection.promise().query('SELECT * FROM employee')
+  .then(([rows, fields]) => {
+    return rows
+  });
+}

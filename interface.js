@@ -1,15 +1,15 @@
-const inquirer = require('inquirer');
-const { allDepartments } =  require('./dbConnection');
+// const inquirer = require('inquirer');
+// import { allDepartments } from './dbConnection.js'
+import inquirer from 'inquirer'
+import { allDepartments, allRoles, allEmployees } from './dbConnection.js';
 
 inquirer
   .prompt([
     {
-      name: 'faveReptile',
-      message: 'What is your favorite reptile?'
+      name: 'department',
+      message: 'Do you want to see all department info?'
     },
   ])
-  .then(answers => {
-    console.info('Answer:', allDepartments());
+  .then(async answers => {
+    console.table(await allRoles());
   });
-
-
