@@ -1,7 +1,4 @@
-// node scripts.js
-// const mysql = require('mysql2');
 import mysql2 from 'mysql2';
-// import {pw} from './secrets.js'
 
 const mysql = mysql2
 
